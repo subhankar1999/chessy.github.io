@@ -132,29 +132,29 @@ function refresh_board() {
         
 
         if(pieces[i].color === 'black' && pieces[i].name ==='rook')
-        boxes[i].style.backgroundImage = `url("/images/black_rook.png")`;
+        boxes[i].style.backgroundImage = `url("./images/black_rook.png")`;
         else if(pieces[i].color === 'black' && pieces[i].name ==='bishop')
-        boxes[i].style.backgroundImage = `url("/images/black_bishop.png")`;
+        boxes[i].style.backgroundImage = `url("./images/black_bishop.png")`;
         else if(pieces[i].color === 'black' && pieces[i].name ==='knight')
-        boxes[i].style.backgroundImage = `url("/images/black_knight.png")`;
+        boxes[i].style.backgroundImage = `url("./images/black_knight.png")`;
         else if(pieces[i].color === 'black' && pieces[i].name ==='king')
-        boxes[i].style.backgroundImage = `url("/images/black_king.png")`;
+        boxes[i].style.backgroundImage = `url("./images/black_king.png")`;
         else if(pieces[i].color === 'black' && pieces[i].name ==='queen')
-        boxes[i].style.backgroundImage = `url("/images/black_queen.png")`;
+        boxes[i].style.backgroundImage = `url("./images/black_queen.png")`;
         else if(pieces[i].color === 'black' && pieces[i].name ==='pawn')
-        boxes[i].style.backgroundImage = `url("/images/black_pawn.png")`;
+        boxes[i].style.backgroundImage = `url("./images/black_pawn.png")`;
         else if(pieces[i].color === 'white' && pieces[i].name ==='rook')
-        boxes[i].style.backgroundImage = `url("/images/white_rook.png")`;
+        boxes[i].style.backgroundImage = `url("./images/white_rook.png")`;
         else if(pieces[i].color === 'white' && pieces[i].name ==='bishop')
-        boxes[i].style.backgroundImage = `url("/images/white_bishop.png")`;
+        boxes[i].style.backgroundImage = `url("./images/white_bishop.png")`;
         else if(pieces[i].color === 'white' && pieces[i].name ==='knight')
-        boxes[i].style.backgroundImage = `url("/images/white_knight.png")`;
+        boxes[i].style.backgroundImage = `url("./images/white_knight.png")`;
         else if(pieces[i].color === 'white' && pieces[i].name ==='king')
-        boxes[i].style.backgroundImage = `url("/images/white_king.png")`;
+        boxes[i].style.backgroundImage = `url("./images/white_king.png")`;
         else if(pieces[i].color === 'white' && pieces[i].name ==='queen')
-        boxes[i].style.backgroundImage = `url("/images/white_queen.png")`;
+        boxes[i].style.backgroundImage = `url("./images/white_queen.png")`;
         else if(pieces[i].color === 'white' && pieces[i].name ==='pawn')
-        boxes[i].style.backgroundImage = `url("/images/white_pawn.png")`;
+        boxes[i].style.backgroundImage = `url("./images/white_pawn.png")`;
         else if(pieces[i].color === '' && pieces[i].name === '')
         boxes[i].style.backgroundImage = 'none';
     }
