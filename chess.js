@@ -9,7 +9,7 @@ let time2 = time;
 let tab = new Audio("tab.wav");
 let check = new Audio("check.wav");
 let endGame = new Audio("endGame.mp3");
-
+let choosen  = -1;
 
 const changeTurn = ()=>{
     return turn === 'white' ? 'black':'white';
@@ -17,6 +17,7 @@ const changeTurn = ()=>{
 
 let time_1 = document.getElementById('time1');
 let time_2 = document.getElementById('time2');
+
 
 function updateCountDown() {
     let minutes;
@@ -91,6 +92,7 @@ pieces[60] = new piece('king','white','','','');
 pieces[61] = new piece('bishop','white','','','');
 pieces[62] = new piece('knight','white','','','');
 pieces[63] = new piece('rook','white','','','');
+
 
 function CheckForWin() {
     if(time1 === 0 || time2 === 0)
@@ -524,7 +526,38 @@ Array.from(boxes).forEach(element => {
         let col = val%8;
         if(isGameOver)
         return;
-       if(pieces[val].canGo !== '')
+        console.log(choosen);
+        if(choosen !== -1)
+        {
+           // console.log(`val is ${val}`);
+           if(val==='64' || val==='65' || val==='66' || val==='67')
+           {
+                if(val === '64')  
+                    pieces[choosen].name = 'queen';
+                else if(val === '65')
+                pieces[choosen].name = 'rook';
+                else if(val === '66')
+                pieces[choosen].name = 'bishop';
+                else if(val === '67')
+                pieces[choosen].name = 'knight';
+                console.log(pieces[56].name);
+                // pieces[choosen].color = turn;
+                choosen = -1;
+                let choose = document.getElementById('choose');
+                let selection = document.getElementById('selection');
+                selection.style.display = "none";
+                    choose.style.display = "none";
+                    refresh_board();
+                    turn  = changeTurn();
+                    console.log(pieces[56].name);
+                updatechecking(pieces);
+                if(isKingsInCheck())
+                check.play();
+                else
+                tab.play();
+           }
+        }
+       else if(pieces[val].canGo !== '')
        {
            let name = pieces[val].canGo.substring(5);
            let color = pieces[val].canGo.substring(0,5);
@@ -533,9 +566,32 @@ Array.from(boxes).forEach(element => {
            pieces[i].canGo = '';
            pieces[val].color = color;
            if(row === 7 && color === 'black' && name === 'pawn')
-           pieces[val].name = 'queen';
+           {
+                let choose = document.getElementById('choose');
+                 let selection = document.getElementById('selection');
+                 selection.style.display = "flex";
+                 choose.style.display = "flex";
+                 boxes[64].style.backgroundImage = `url("black_queen.png")`;
+                 boxes[65].style.backgroundImage = `url("black_rook.png")`;
+                 boxes[66].style.backgroundImage = `url("black_bishop.png")`;
+                 boxes[67].style.backgroundImage = `url("black_knight.png")`;
+
+                choosen = val;
+                
+           }
            else if(row === 0 && color === 'white' && name === 'pawn')
-           pieces[val].name = 'queen';
+           {
+                let choose = document.getElementById('choose');
+                let selection = document.getElementById('selection');
+                selection.style.display = "flex";
+                choose.style.display = "flex";
+                boxes[64].style.backgroundImage = `url("white_queen.png")`;
+                boxes[65].style.backgroundImage = `url("white_rook.png")`;
+                boxes[66].style.backgroundImage = `url("white_bishop.png")`;
+                boxes[67].style.backgroundImage = `url("white_knight.png")`;
+                choosen = val;
+           }
+          
            else 
            pieces[val].name = name;
            if(pieces[val].name === 'king' && parseInt(val) === leftRookInterchange)
@@ -602,14 +658,17 @@ Array.from(boxes).forEach(element => {
                     pieces[i].toRemove = '';
                }
            }
-           turn = changeTurn();
-           
-           refresh_board();
-        updatechecking(pieces);
-            if(isKingsInCheck())
-            check.play();
-            else
-            tab.play();
+           if(choosen === -1)
+           {
+                turn = changeTurn();
+            
+            refresh_board();
+            updatechecking(pieces);
+                if(isKingsInCheck())
+                check.play();
+                else
+                tab.play();
+           }
        }
         else if(pieces[val].name === 'pawn' && pieces[val].color === turn)
         {
@@ -1009,9 +1068,12 @@ Array.from(boxes).forEach(element => {
                  pieces[i].canGo = '';
             }
         }
-        refresh_board();
-        updatechecking(pieces);
-        isKingsInCheck();
+        if(choosen === -1)
+        {
+            refresh_board();
+            updatechecking(pieces);
+            isKingsInCheck();
+        }
     })
 })
 
