@@ -10,6 +10,7 @@ let tab = new Audio("tab.wav");
 let check = new Audio("check.wav");
 let endGame = new Audio("endGame.mp3");
 let choosen  = -1;
+let flag = true;
 
 const changeTurn = ()=>{
     return turn === 'white' ? 'black':'white';
@@ -41,12 +42,47 @@ function updateCountDown() {
     seconds = seconds < 10 ? '0'+seconds : seconds;
     minutes = minutes < 10 ? '0'+minutes : minutes;
     if(turn === 'white')
-    time_2.innerText = `${minutes} : ${seconds}`;
+        time_2.innerText = `${minutes} : ${seconds}`;
     else
     time_1.innerText = `${minutes} : ${seconds}`;
 }
 
+function changeColor() {
+    if(!isGameOver)
+    {
+        if(turn === 'white')
+        {
+            time_1.style.backgroundColor = 'rgb(20, 83, 20)';
+            if(flag)
+            {
+                flag = false;
+                time_2.style.backgroundColor = 'rgb(33, 202, 33)';
+            }
+            else
+            {
+                flag = true;
+                time_2.style.backgroundColor = 'rgb(20, 83, 20)';
+            }
+        }
+        else
+        {
+            time_2.style.backgroundColor = 'rgb(20, 83, 20)';
+            if(flag)
+            {
+                flag = false;
+                time_1.style.backgroundColor = 'rgb(33, 202, 33)';
+            }
+            else
+            {
+                flag = true;
+                time_1.style.backgroundColor = 'rgb(20, 83, 20)';
+            }
+        }
+    }
+}
+
 setInterval(updateCountDown, 1000);
+setInterval(changeColor,500);
 
 class piece{
     constructor(name,color,canGo,canAttack,toRemove)
