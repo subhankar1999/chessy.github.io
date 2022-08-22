@@ -562,7 +562,7 @@ Array.from(boxes).forEach(element => {
         let col = val%8;
         if(isGameOver)
         return;
-        console.log(choosen);
+        //console.log(choosen);
         if(choosen !== -1)
         {
            // console.log(`val is ${val}`);
@@ -576,7 +576,7 @@ Array.from(boxes).forEach(element => {
                 pieces[choosen].name = 'bishop';
                 else if(val === '67')
                 pieces[choosen].name = 'knight';
-                console.log(pieces[56].name);
+                //console.log(pieces[56].name);
                 // pieces[choosen].color = turn;
                 choosen = -1;
                 let choose = document.getElementById('choose');
